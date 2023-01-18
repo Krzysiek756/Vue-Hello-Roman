@@ -1,0 +1,20 @@
+doctype html
+html(lang="pl")
+    //HEAD
+    include parts/head.pug
+    body
+        //HEADER
+        include parts/header.pug
+        //SLIDER
+        include parts/slider.pug
+        //CONTENT
+        .container
+            .simple-content
+                h1 Container
+                p Paragraph
+                span span
+                span.span-with-class span-with-class
+                div Simple Div
+                .div-with-class Div with class
+        //FOOTER
+        include parts/footer.pug

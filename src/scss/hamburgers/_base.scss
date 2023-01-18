@@ -1,0 +1,371 @@
+@use 'sass:math';
+
+
+// Hamburger
+// ==================================================
+.hamburger {
+  padding: $hamburger-padding-y $hamburger-padding-x;
+  cursor: pointer;
+
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+
+  // Normalize (<button>)
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+
+  &:hover {
+    @if $hamburger-hover-use-filter == true {
+      filter: $hamburger-hover-filter;
+    }
+    @else {
+      opacity: $hamburger-hover-opacity;
+    }
+  }
+
+  &.is-active {
+    &:hover {
+      @if $hamburger-hover-use-filter == true {
+        filter: $hamburger-active-hover-filter;
+      }
+      @else {
+        opacity: $hamburger-active-hover-opacity;
+      }
+    }
+
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $hamburger-active-layer-color;
+    }
+  }
+}
+
+.hamburger-box {
+  width: $hamburger-layer-width;
+  height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {  
+  display: block;
+  top: 50%;
+  margin-top: calc($hamburger-layer-height, -2);//?????????????
+
+  &,
+  &::before,
+  &::after {
+    width: $hamburger-layer-width;
+    height: $hamburger-layer-height;
+    background-color: $hamburger-layer-color;
+    border-radius: $hamburger-layer-border-radius;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+
+  &::before {
+    top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+  }
+
+  &::after {
+    bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+  }
+}
+
+
+
+//ALL HAMBURGER ICON
+// <body>
+//   <div class="hamburger hamburger--3dx">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--3dx</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--3dx-r is-active">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--3dx-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--3dy">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--3dy</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--3dy-r is-active">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--3dy-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--3dxy">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--3dxy</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--3dxy-r is-active">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--3dxy-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--arrow">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--arrow</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--arrow-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--arrow-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--arrowalt">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--arrowalt</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--arrowalt-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--arrowalt-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--arrowturn">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--arrowturn</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--arrowturn-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--arrowturn-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--boring">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--boring</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--collapse">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--collapse</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--collapse-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--collapse-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--elastic">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--elastic</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--elastic-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--elastic-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--emphatic">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--emphatic</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--emphatic-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--emphatic-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--minus">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--minus</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--slider">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--slider</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--slider-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--slider-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--spin">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--spin</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--spin-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--spin-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--spring">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--spring</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--spring-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--spring-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--stand">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--stand</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--stand-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--stand-r</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--squeeze">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--squeeze</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--vortex">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--vortex</code>
+
+//   <br>
+
+//   <div class="hamburger hamburger--vortex-r">
+//     <div class="hamburger-box">
+//       <div class="hamburger-inner"></div>
+//     </div>
+//   </div>
+//   <code>hamburger--vortex-r</code>
+//   <script src="/src/js/main.js"></script>
+// </body>
