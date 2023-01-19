@@ -16,7 +16,9 @@
       <!--HEADER-->
       <!--SLIDER-->
       <!--CONTENT-->
-      <h1 class="text__style">Hello {{name}}</h1>
+      <h1 class="text__style" v-bind:style="style">Hello {{name}}</h1>
+      <button v-on:click="handleClick">Hello </button>
+      <component is="NewComponent"> </component>
       <!--FOOTER-->
       <script src="/src/js/main.js"></script>
       <script></script>
